@@ -1,12 +1,11 @@
-FROM golang:1.13.14-buster
+FROM golang:1.16.2-buster
 
-RUN set -x && \
-	go get -u github.com/gravitational/tpl && \
-	go install github.com/gravitational/tpl
+RUN set -ex && \
+	go install github.com/gravitational/tpl@latest
 
 FROM registry.centos.org/centos/centos:7
 
-RUN set -x && yum -y install \
+RUN set -ex && yum -y install \
 	selinux-policy-targeted \
 	selinux-policy-devel \
 	bzip2 \
